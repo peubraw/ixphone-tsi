@@ -1,56 +1,54 @@
-# LINPHONE/VIEW: Knowledge Base
+# LINPHONE/VIEW — Knowledge Base
 
 ## OVERVIEW
-UI layer for IXPHONE. Built with QML and Qt6. Follows MVVM pattern where C++ handles core logic and QML handles the view. All visual components reside here.
+Camada de UI do IXPHONE. Construída em QML + Qt6. Segue o padrão MVVM: C++ cuida da lógica central (core/) e QML cuida da view. Todos os componentes visuais residem aqui.
 
-## STRUCTURE
-- Style/: Design system tokens, themes, and icon registry.
-- Control/: Reusable components like Buttons, Inputs, and Popups.
-- Page/: Full screens, window shells, and complex layouts.
-- Test/: Isolated component demos used for development only.
+## ESTRUTURA
+- `Style/` — Tokens de design, temas e registro de ícones.
+- `Control/` — Componentes reutilizáveis (Botões, Inputs, Popups).
+- `Page/` — Telas completas, shells de janela e layouts complexos.
+- `Test/` — Demos isolados de componentes para desenvolvimento.
 
 ## WHERE TO LOOK
-| Tarefa | Arquivo | Linhas |
-| :--- | :--- | :--- |
-| Shell principal e Roteamento | Page/Window/MainWindow.qml | 346 |
-| Janela de Chamada ativa | Page/Window/Call/CallsWindow.qml | 1880 |
-| Layout Principal (Nav e Painel) | Page/Layout/MainLayout.qml | 809 |
-| Design Tokens e Cores base | Style/DefaultStyle.qml | - |
-| Registro de Imagens e Ícones | Style/AppIcons.qml | - |
-| Lógica JS de suporte UI | Control/Tool/Helper/utils.js | 891 |
-| Tela de Login SIP | Page/Form/Login/SIPLoginPage.qml | 480 |
-| Lista de Contatos | Page/Main/Contact/ContactPage.qml | 948 |
-| Interface de Reunião | Page/Main/Meeting/MeetingPage.qml | 958 |
+| Tarefa | Arquivo |
+| :--- | :--- |
+| Shell principal e roteamento | `Page/Window/MainWindow.qml` |
+| Janela de chamada ativa | `Page/Window/Call/CallsWindow.qml` |
+| Layout principal (nav + painel) | `Page/Layout/MainLayout.qml` |
+| Tokens de design e cores base | `Style/DefaultStyle.qml` |
+| Registro de imagens e ícones | `Style/AppIcons.qml` |
+| Lógica JS de suporte à UI | `Control/Tool/Helper/utils.js` |
+| Tela de login SIP | `Page/Form/Login/SIPLoginPage.qml` |
+| Lista de contatos | `Page/Main/Contact/ContactPage.qml` |
+| Interface de reunião | `Page/Main/Meeting/MeetingPage.qml` |
 
-## STYLE SYSTEM
-DefaultStyle.qml sets the active theme for the whole application. Themes.qml contains the "tsi" palette. AppIcons.qml maps internal names to image paths like image://internal/ixphoneLogo. Typography.qml handles font scaling and styles.
+## SISTEMA DE ESTILOS
+`DefaultStyle.qml` define o tema ativo para toda a aplicação. `Themes.qml` contém a paleta `"tsi"`. `AppIcons.qml` mapeia nomes internos para caminhos de imagem (ex: `image://internal/ixphoneLogo`). `Typography.qml` controla escala e estilos de fonte.
 
-## NAVIGATION PATTERN
-MainWindow.qml uses a StackView named mainWindowStackView. Initial routing chooses between welcomePage, sipLoginPage, or mainPage based on account status. Transitions usually use StackView.Immediate to skip animations.
+## PADRÃO DE NAVEGAÇÃO
+`MainWindow.qml` usa uma `StackView` chamada `mainWindowStackView`. O roteamento inicial escolhe entre `welcomePage`, `sipLoginPage` ou `mainPage` com base no status da conta. Transições geralmente usam `StackView.Immediate` para evitar animações.
 
-## POPUP/NOTIFICATION PATTERN
-Popup.qml serves as the base for all overlays. Specialized versions like LoadingPopup and Dialog extend it. Notifier C++ class triggers system notifications like NotificationReceivedCall. These components handle their own visibility logic.
+## PADRÃO DE POPUP/NOTIFICAÇÃO
+`Popup.qml` é a base de todos os overlays. Versões especializadas (`LoadingPopup`, `Dialog`) o estendem. A classe C++ `Notifier` dispara notificações nativas do sistema (ex: `NotificationReceivedCall`). Cada componente controla sua própria visibilidade.
 
 ## TSI CUSTOMIZATIONS (NUNCA REVERTER)
-- Theme fixed to "tsi" in DefaultStyle.qml, ignoring SettingsCpp.
-- AppIcons.qml includes IXPHONE, ixphoneWordmark, and Mamute logos.
-- LoginLayout.qml shows IXPHONE wordmark and Mamute footer.
-- WelcomePage.qml replaced carousel with a single IXPHONE logo slide.
-- SIPLoginPage.qml hides the account creation button (visible: false).
-- Notifications use applicationName variable instead of "Linphone" string.
+- Tema fixado em `"tsi"` no `DefaultStyle.qml`, ignorando `SettingsCpp`.
+- `AppIcons.qml` inclui logos IXPHONE, ixphoneWordmark e Mamute.
+- `LoginLayout.qml` exibe wordmark IXPHONE e rodapé Mamute.
+- `WelcomePage.qml` substituiu o carrossel por um único slide com o logo IXPHONE.
+- `SIPLoginPage.qml` oculta o botão de criação de conta (`visible: false`).
+- Notificações usam `applicationName` em vez da string literal `"Linphone"`.
 
-## COMPLEX FILES (>400 linhas)
-- CallsWindow.qml (1880L): Handles all call UI states and video windows.
-- MainLayout.qml (809L): Manages the main application structure and navigation.
-- ContactPage.qml (948L): Feature heavy screen for contact management.
-- MeetingPage.qml (958L): Complex layout for multi party meetings.
-- RecordPage.qml (796L): Logic for call recordings list.
-- utils.js (891L): Shared Javascript utility functions for UI logic.
-- ChatMessage.qml (588L): Individual chat bubble logic and rendering.
+## ARQUIVOS COMPLEXOS (>400 linhas)
+- `CallsWindow.qml` (~1880L): Gerencia todos os estados de chamada e vídeo.
+- `MeetingPage.qml` (~958L): Layout complexo para reuniões multiparticipantes.
+- `ContactPage.qml` (~948L): Tela densa para gerenciamento de contatos.
+- `utils.js` (~891L): Utilitários JavaScript compartilhados pela UI.
+- `MainLayout.qml` (~809L): Estrutura principal e navegação do app.
+- `RecordPage.qml` (~796L): Lógica para lista de gravações de chamadas.
+- `ChatMessage.qml` (~588L): Lógica e renderização de balão de chat.
 
-## KNOWN TODOS
-- MainWindow.qml: Needs better security mode handling and C++ integration.
-- MeetingPage.qml: Layout requires spacing adjustments.
-- utils.js: Contains pending async implementation tasks.
-- Sticker.qml: Needs size and decoration updates.
-- ChatDroppableTextArea.qml: Refactor large text handling.
+## ANTI-PATTERNS
+- Nunca acesse objetos C++ core/ diretamente sem passar por signals/Q_PROPERTY.
+- Não crie bindings circulares em propriedades QML — causam loops infinitos.
+- Não use `Qt.callLater` para esconder race conditions; corrija a causa raiz.

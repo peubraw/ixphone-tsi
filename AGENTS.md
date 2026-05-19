@@ -21,20 +21,32 @@ ixphone-desktop/
 ├── CMakeLists.txt              # Config principal: nome/executável do app
 ├── Linphone/
 │   ├── application_info.cmake  # Vendor, descrição, URLs, ID da aplicação
-│   ├── core/                   # C++ — lógica SDK (App.cpp, constantes, etc.)
-│   ├── view/                   # QML — toda a UI
+│   ├── core/                   # C++ — bridge MVVM entre model/ e view/  → core/AGENTS.md
+│   ├── model/                  # C++ — wrappers SDK, roda na thread do SDK → model/AGENTS.md
+│   ├── view/                   # QML — toda a UI                          → view/AGENTS.md
 │   │   ├── Style/              # Themes.qml, DefaultStyle.qml, AppIcons.qml
 │   │   ├── Page/               # Telas (WelcomePage, SIPLoginPage, MainWindow, etc.)
 │   │   └── Control/Popup/Notification/  # NotificationReceived*.qml
-│   └── data/
+│   ├── tool/                   # C++ — utilitários internos (Utils, providers) → tool/AGENTS.md
+│   └── data/                   # Assets estáticos e config de fábrica      → data/AGENTS.md
 │       ├── config/linphonerc-factory  # Config padrão SIP/app
-│       ├── image/              # SVGs: linphone.svg, splashscreen-logo.svg, etc.
+│       ├── image/              # SVGs, PNGs: logos IXPHONE, Mamute, ícones UI
 │       ├── icon/               # icon.ico (Windows) + hicolor/
 │       └── languages/          # Traduções Qt (.ts) — pt_BR.ts, en.ts, fr.ts, etc.
 ├── cmake/                      # Scripts auxiliares de build
 ├── external/linphone-sdk       # Submodule (SDK nativo — ~vários GB, baixar só para build)
 └── docker-files/               # Ambientes CI Docker
 ```
+
+## KNOWLEDGE BASE (AGENTS.md hierárquico)
+| Camada | Arquivo | Conteúdo |
+|--------|---------|---------|
+| Projeto (raiz) | `AGENTS.md` | Visão geral, stack, TSI changes, anti-patterns |
+| Bridge C++↔QML | `Linphone/core/AGENTS.md` | Threading, SafeConnection, App.cpp |
+| SDK Wrappers | `Linphone/model/AGENTS.md` | Thread do SDK, LinphoneObject, wrappers |
+| UI QML | `Linphone/view/AGENTS.md` | MVVM, tema TSI, navegação, popups |
+| Utilitários | `Linphone/tool/AGENTS.md` | Utils.cpp, openAvatarFilePicker, providers |
+| Assets/Config | `Linphone/data/AGENTS.md` | Assets TSI, linphonerc-factory, SVG/ICO |
 
 ## WHERE TO LOOK
 | Tarefa | Local |
@@ -104,14 +116,16 @@ TSI/IXPHONE-specific deltas vs upstream. **Anchor commit:** `671db3b56` (upstrea
 ### Traduções (pt_BR.ts)
 - `welcome_page_1_message`: "Un aplicativo francês..." → "Softphone corporativo **seguro** e **confiável** para a sua empresa."
 
-## ASSETS PENDENTES (TODO)
-Os seguintes SVG/ICO precisam ser criados/substituídos com assets IXPHONE:
-- `Linphone/data/image/linphone.svg` — logo principal (carrossel boas-vindas)
-- `Linphone/data/image/splashscreen-logo.svg` — splash screen
-- `Linphone/data/image/login_image.svg` — imagem da tela de login
-- `Linphone/data/image/belledonne.svg` — logo "sobre" (substituir por logo TSI)
-- `Linphone/data/icon.ico` — ícone Windows (taskbar/arquivo)
-- `Linphone/data/icon/hicolor/` — ícones Linux (PNG 16x16 a 512x512)
+## ASSETS TSI (já substituídos)
+Os seguintes assets foram substituídos com brand IXPHONE:
+- `Linphone/data/icon/icon.ico` — ícone Windows (taskbar/arquivo) ✅
+- `Linphone/data/icon/hicolor/` — ícones Linux (PNG 16x16 a 1024x1024) ✅
+- `Linphone/data/image/ixphone_logo.png` — logo quadrado principal ✅
+- `Linphone/data/image/ixphone_logo_square.png` — variante quadrada ✅
+- `Linphone/data/image/ixphone_wordmark.png` — wordmark horizontal ✅
+- `Linphone/data/image/mamute_logo.png` / `mamute_logo_branco.png` — logos Mamute ✅
+
+> SVGs originais Linphone (`linphone.svg`, `splashscreen-logo.svg`, `login_image.svg`, `belledonne.svg`) ainda presentes como placeholders. Substituir por SVGs IXPHONE quando disponíveis.
 
 ## TSI ANTI-PATTERNS
 - **Nunca** restaurar `LINPHONEAPP_APPLICATION_NAME "Linphone"` ou `EXECUTABLE_NAME "linphone"`.
