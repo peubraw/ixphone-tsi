@@ -1,7 +1,6 @@
 import QtCore
 import QtQuick
 import QtQuick.Controls.Basic as Control
-import QtQuick.Dialogs
 import QtQuick.Effects
 import QtQuick.Layouts
 import Linphone
@@ -119,7 +118,13 @@ MainRightPanel {
 				hoveredTextColor: DefaultStyle.main2_800
 				pressedTextColor: DefaultStyle.main2_900
 				KeyNavigation.down: editButton.visible ? editButton : givenNameEdit
-				onClicked: fileDialog.open()
+				onClicked: {
+					var avatarPath = UtilsCpp.openAvatarFilePicker()
+					if (avatarPath) {
+						mainItem.oldPictureUri = mainItem.contact.core.pictureUri
+						mainItem.contact.core.pictureUri = avatarPath
+					}
+				}
 			},
 			RowLayout {
 				visible: mainItem.contact && mainItem.contact.core.pictureUri.length != 0
@@ -137,20 +142,15 @@ MainRightPanel {
                     textSize: Typography.h4.pixelSize
                     textWeight: Typography.h4.weight
 					KeyNavigation.right: removeButton
-					onClicked: fileDialog.open()
-					//: "Edit contact image"
-					Accessible.name: qsTr("edit_contact_image_accessible_name")
-				}
-				FileDialog {
-					id: fileDialog
-					currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-					onAccepted: {
-						mainItem.oldPictureUri = mainItem.contact.core.pictureUri
-						var avatarPath = UtilsCpp.createAvatar( selectedFile )
-						if(avatarPath){
+					onClicked: {
+						var avatarPath = UtilsCpp.openAvatarFilePicker()
+						if (avatarPath) {
+							mainItem.oldPictureUri = mainItem.contact.core.pictureUri
 							mainItem.contact.core.pictureUri = avatarPath
 						}
 					}
+					//: "Edit contact image"
+					Accessible.name: qsTr("edit_contact_image_accessible_name")
 				}
 				IconLabelButton {
 					id: removeButton

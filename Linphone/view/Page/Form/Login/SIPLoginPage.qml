@@ -53,9 +53,7 @@ LoginLayout {
 			Layout.fillWidth: true
 		},
 		RowLayout {
-			visible: !SettingsCpp.assistantHideCreateAccount
-            Layout.rightMargin: Utils.getSizeWithScreenRatio(51)
-            spacing: Utils.getSizeWithScreenRatio(20)
+			visible: false
 			Text {
                 Layout.rightMargin: Utils.getSizeWithScreenRatio(15)
                 //: Pas encore de compte ?

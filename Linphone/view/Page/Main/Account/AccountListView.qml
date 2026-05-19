@@ -2,8 +2,6 @@ import QtCore
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic as Control
-import QtQuick.Dialogs
-
 import Linphone
 import UtilsCpp
 import SettingsCpp
@@ -37,23 +35,16 @@ ColumnLayout{
 			Layout.preferredWidth: mainItem.childrenWidth
 			account: modelData
 			isSelected: modelData && accountProxy.defaultAccount && modelData.core === accountProxy.defaultAccount.core
-			onAvatarClicked: fileDialog.open()
+			onAvatarClicked: {
+				var avatarPath = UtilsCpp.openAvatarFilePicker()
+				if (avatarPath) modelData.core.pictureUri = avatarPath
+			}
 			onBackgroundClicked: {
 				modelData.core.lSetDefaultAccount()
 			}
 			onEdit: editAccount(modelData)
 			hoverEnabled: true
 			spacing: mainItem.spacing
-			FileDialog {
-				id: fileDialog
-				currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-				onAccepted: {
-					var avatarPath = UtilsCpp.createAvatar( selectedFile )
-					if(avatarPath){
-						modelData.core.pictureUri = avatarPath
-					}
-				}
-			}
 			style: ButtonStyle.whiteSelected
 			KeyNavigation.up: visibleChildren.length
 								!= 0 ? getPreviousItem(

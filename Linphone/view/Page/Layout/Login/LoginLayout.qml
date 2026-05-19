@@ -136,6 +136,7 @@ Rectangle {
 			}
 			BigButton {
 				id: aboutButton
+				visible: false
 				Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 				icon.source: AppIcons.info
 				text: qsTr("help_about_title").arg(applicationName)
@@ -160,6 +161,27 @@ Rectangle {
             Layout.topMargin: Math.max(Utils.getSizeWithScreenRatio(15), Utils.getSizeWithScreenRatio(70 - ((70/(DefaultStyle.defaultHeight - mainWindow.minimumHeight))*(DefaultStyle.defaultHeight-mainWindow.height))))
             Layout.alignment: Qt.AlignBottom
 
+		}
+		RowLayout {
+			Layout.fillWidth: true
+			Layout.bottomMargin: Utils.getSizeWithScreenRatio(8)
+			Layout.leftMargin: Utils.getSizeWithScreenRatio(30)
+			Layout.rightMargin: Utils.getSizeWithScreenRatio(30)
+			Image {
+				source: AppIcons.ixphoneWordmark
+				Layout.preferredHeight: Utils.getSizeWithScreenRatio(36)
+				Layout.preferredWidth: Utils.getSizeWithScreenRatio(132)
+				fillMode: Image.PreserveAspectFit
+				smooth: true
+			}
+			Item { Layout.fillWidth: true }
+			Image {
+				source: AppIcons.mamuteLogo
+				Layout.preferredHeight: Utils.getSizeWithScreenRatio(36)
+				Layout.preferredWidth: Utils.getSizeWithScreenRatio(36)
+				fillMode: Image.PreserveAspectFit
+				smooth: true
+			}
 		}
 		Image {
 			id: bottomMountains
