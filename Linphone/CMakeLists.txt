@@ -122,22 +122,16 @@ add_subdirectory(core)
 
 set(LANGUAGES_DIRECTORY "data/languages")
 set(I18N_FILENAME i18n.qrc)
-set(LANGUAGES en fr de)
+set(LANGUAGES en fr de pt_BR es ru uk)
 set(CMAKE_CPP_COMPILER gcc)
 
 # Add languages support.
 add_subdirectory("${LANGUAGES_DIRECTORY}" "data/languages")
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES ${LANGUAGES})
-
 set(TS_FILES)
 foreach (lang ${LANGUAGES})
   list(APPEND TS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/${LANGUAGES_DIRECTORY}/${lang}.ts")
 endforeach()
-
-qt_add_translations(${TARGET_NAME}
-TS_FILES ${TS_FILES}
-RESOURCE_PREFIX ${LANGUAGES_DIRECTORY})
 
 # set application details
 if(WIN32)
@@ -174,6 +168,12 @@ qt6_add_qml_module(Linphone
 
 qt6_add_resources(Linphone "resources" PREFIX "/" FILES ${_LINPHONEAPP_RC_FILES})
 set_property(TARGET Linphone PROPERTY POSITION_INDEPENDENT_CODE ON)   #Need by Qt
+
+qt_add_translations(${TARGET_NAME}
+    TS_FILES ${TS_FILES}
+    RESOURCE_PREFIX ${LANGUAGES_DIRECTORY}
+    IMMEDIATE_CALL
+    SOURCE_TARGETS ${TARGET_NAME})
 
 ################################################################
 #						CRASHPAD

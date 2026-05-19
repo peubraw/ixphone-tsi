@@ -1,4 +1,4 @@
-A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "data/icon.ico"
+1 ICON MOVEABLE PURE LOADONCALL DISCARDABLE "${CMAKE_CURRENT_SOURCE_DIR}/data/icon.ico"
 
 # if defined(UNDER_CE)
 #  include <winbase.h>
