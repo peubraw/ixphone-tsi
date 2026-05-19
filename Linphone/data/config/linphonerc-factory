@@ -1,9 +1,8 @@
+# TSI IXPHONE - account_creator desabilitado (uso de contas SIP terceiros)
 [account_creator]
 backend=1
 # 1 means FlexiAPI, 0 is XMLRPC
-url=https://subscribe.linphone.org/api/
-# replace above URL by https://staging-subscribe.linphone.org/api/ for testing
-# url=https://flexisip-staging-master.linphone.org/api/
+# URL removida - IXPHONE usa contas SIP de terceiros
 
 [alerts]
 alerts_enabled=1
@@ -43,19 +42,19 @@ chat_messages_aggregation_delay=1000
 guess_hostname=1
 ping_with_options=0
 register_only_when_network_is_up=1
-rls_uri=sips:rls@sip.linphone.org
+rls_uri=sips:rls@10.168.11.1
 update_presence_model_timestamp_before_publish_expires_refresh=1
 use_cpim=1
 zrtp_key_agreements_suites=MS_ZRTP_KEY_AGREEMENT_K255_MLK512,MS_ZRTP_KEY_AGREEMENT_K255_KYB512
 
 [sound]
-#remove this property for any application that is not Linphone public version itself
 ec_calibrator_cool_tones=1
 ec_filter=MSWebRTCAEC
 
 [ui]
 assistant_supports_phone_numbers/readonly=0
 use_qrcode=0
+assistant_third_party_sip_account_domain_fallback=10.168.11.1
 
 [video]
 auto_resize_preview_to_keep_ratio=1

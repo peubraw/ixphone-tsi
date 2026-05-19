@@ -6063,8 +6063,8 @@ Failed to create 1-1 conversation with %1 !</extracomment>
     <message>
         <location filename="../../view/Page/Main/Start/WelcomePage.qml" line="83"/>
         <source>welcome_page_1_message</source>
-        <extracomment>&quot;Une application de communication &lt;b&gt;sécurisée&lt;/b&gt;,&lt;br&gt; &lt;b&gt;open source&lt;/b&gt; et &lt;b&gt;française&lt;/b&gt;.&quot;</extracomment>
-        <translation>Um aplicativo de comunicação &lt;b&gt;seguro&lt;/b&gt;,&lt;br&gt;&lt;b&gt;de código aberto&lt;/b&gt; e &lt;b&gt;francês&lt;/b&gt;.</translation>
+        <extracomment>&quot;Softphone corporativo seguro e confiável.&quot;</extracomment>
+        <translation>Softphone corporativo &lt;b&gt;seguro&lt;/b&gt; e &lt;b&gt;confiável&lt;/b&gt;&lt;br&gt;para a sua empresa.</translation>
     </message>
     <message>
         <location filename="../../view/Page/Main/Start/WelcomePage.qml" line="85"/>

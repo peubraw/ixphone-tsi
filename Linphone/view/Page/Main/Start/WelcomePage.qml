@@ -80,16 +80,12 @@ LoginLayout {
 				itemsList: Repeater {
 					id: slideRepeater
 					model: [
-                        //: "Une application de communication <b>sécurisée</b>,<br> <b>open source</b> et <b>française</b>."
+                        //: "Softphone corporativo seguro e confiável."
                     {title: applicationName, text: qsTr("welcome_page_1_message")},
                         //: "Sécurisé"
                     {title: qsTr("welcome_page_2_title"),
                             //: "Vos communications sont en sécurité grâce aux <br><b>Chiffrement de bout en bout</b>."
-                            text: qsTr("welcome_page_2_message")},
-                        //: "Open Source"
-                    {title: qsTr("welcome_page_3_title"),
-                            //: "Une application open source et un <b>service gratuit</b> <br>depuis <b>2001</b>"
-                            text: qsTr("welcome_page_3_message")}
+                            text: qsTr("welcome_page_2_message")}
 					]
 					ColumnLayout {
                         spacing: Utils.getSizeWithScreenRatio(10)
