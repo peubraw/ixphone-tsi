@@ -129,6 +129,10 @@ void AccountDeviceList::setSelf(QSharedPointer<AccountDeviceList> me) {
 	mCoreModelConnection->invokeToModel([=] {
 		auto core = CoreModel::getInstance()->getCore();
 		auto ams = core->createAccountManagerServices();
+		if (!ams) {
+			lWarning() << log().arg("createAccountManagerServices returned null – account manager not configured");
+			return;
+		}
 		auto amsModel = Utils::makeQObject_ptr<AccountManagerServicesModel>(ams);
 		mCoreModelConnection->invokeToCore([this, amsModel, me]() {
 			mAccountManagerServicesModel = amsModel;

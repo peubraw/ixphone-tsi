@@ -353,14 +353,16 @@ void App::setSelf(QSharedPointer<App>(me)) {
 	mCoreModelConnection = SafeConnection<App, CoreModel>::create(me, CoreModel::getInstance());
 	mCoreModelConnection->makeConnectToModel(&CoreModel::callCreated,
 	                                         [this](const std::shared_ptr<linphone::Call> &call) {
-		                                         if (call->getDir() == linphone::Call::Dir::Incoming) return;
+		                                         bool isIncoming = (call->getDir() == linphone::Call::Dir::Incoming);
 		                                         auto callCore = CallCore::create(call);
-		                                         mCoreModelConnection->invokeToCore([this, callCore] {
+		                                         mCoreModelConnection->invokeToCore([this, callCore, isIncoming] {
 			                                         auto callGui = new CallGui(callCore);
 			                                         auto win = getOrCreateCallsWindow(QVariant::fromValue(callGui));
 			                                         Utils::smartShowWindow(win);
-			                                         auto mainwin = getMainWindow();
-			                                         QMetaObject::invokeMethod(mainwin, "callCreated");
+			                                         if (!isIncoming) {
+				                                         auto mainwin = getMainWindow();
+				                                         QMetaObject::invokeMethod(mainwin, "callCreated");
+			                                         }
 			                                         lDebug() << "App : call created" << callGui;
 		                                         });
 	                                         });

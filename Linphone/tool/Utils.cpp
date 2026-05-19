@@ -46,6 +46,7 @@
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QDesktopServices>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QHostAddress>
 #include <QImageReader>
@@ -329,6 +330,16 @@ QString Utils::createAvatar(const QUrl &fileUrl) {
 		}
 	}
 	return fileUri;
+}
+
+QString Utils::openAvatarFilePicker() {
+	QString filePath = QFileDialog::getOpenFileName(
+	    nullptr,
+	    tr("Select Image"),
+	    QStandardPaths::writableLocation(QStandardPaths::PicturesLocation),
+	    tr("Images (*.png *.jpg *.jpeg *.bmp *.gif)"));
+	if (filePath.isEmpty()) return QString();
+	return createAvatar(QUrl::fromLocalFile(filePath));
 }
 
 QString Utils::formatElapsedTime(int seconds, bool dotsSeparator) {
