@@ -4037,7 +4037,7 @@ Apenas seu correspondente pode descriptografá-las.</translation>
         <location filename="../../view/Page/Form/Login/LoginPage.qml" line="97"/>
         <source>assistant_login_third_party_sip_account_title</source>
         <extracomment>&quot;Compte SIP tiers&quot;</extracomment>
-        <translation>Conta SIP de terceiros</translation>
+        <translation>Conta TSI</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/LoginPage.qml" line="106"/>
@@ -5309,7 +5309,7 @@ Apenas seu correspondente pode descriptografá-las.</translation>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="44"/>
         <source>assistant_login_third_party_sip_account_title</source>
         <extracomment>Compte SIP tiers</extracomment>
-        <translation>Conta SIP de terceiros</translation>
+        <translation>Conta TSI</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="62"/>
@@ -5330,17 +5330,17 @@ Apenas seu correspondente pode descriptografá-las.</translation>
 Ces fonctionnalités seront masquées si vous utilisez un compte SIP tiers.
 
 Pour les activer dans un projet commercial, merci de nous contacter.</source>
-        <translation>Algumas funcionalidades, como conversas em grupo, videoconferências, e outros, exigem uma conta %1.
+        <translation>Alguns recursos, como conversas em grupo e videoconferências, exigem uma conta %1.
 
-Estas funcionalidades serão escondidas se você utilizar uma conta SIP de terceiros.
+Esses recursos ficam ocultos quando você se registra com uma conta TSI.
 
-Para habilitá-las em um projeto comercial, por favor, entre em contato conosco.</translation>
+Para habilitá-los em um projeto comercial, entre em contato conosco.</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="133"/>
         <source>assistant_third_party_sip_account_create_linphone_account</source>
         <extracomment>&quot;Créer un compte linphone&quot;</extracomment>
-        <translation>Criar uma conta Linphone</translation>
+        <translation>Criar uma conta IXPHONE</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="145"/>
@@ -5393,7 +5393,7 @@ Para habilitá-las em um projeto comercial, por favor, entre em contato conosco.
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="298"/>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="303"/>
         <source>assistant_account_login</source>
-        <translation>Conexão</translation>
+        <translation>Login</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="354"/>

@@ -6047,7 +6047,7 @@ Expiration : %1</translation>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="44"/>
         <source>assistant_login_third_party_sip_account_title</source>
         <extracomment>Compte SIP tiers</extracomment>
-        <translation>Third-party SIP account</translation>
+        <translation>TSI Account</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="62"/>
@@ -6078,7 +6078,7 @@ To enable them in a commercial project, please contact us.</translation>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="133"/>
         <source>assistant_third_party_sip_account_create_linphone_account</source>
         <extracomment>&quot;Créer un compte linphone&quot;</extracomment>
-        <translation>Create a linphone account</translation>
+        <translation>Create an IXPHONE account</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="145"/>
@@ -6137,7 +6137,7 @@ To enable them in a commercial project, please contact us.</translation>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="301"/>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="306"/>
         <source>assistant_account_login</source>
-        <translation>Connection</translation>
+        <translation>Login</translation>
     </message>
     <message>
         <location filename="../../view/Page/Form/Login/SIPLoginPage.qml" line="357"/>
